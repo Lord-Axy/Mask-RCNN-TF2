@@ -21,7 +21,7 @@ from tensorflow.keras.layers import BatchNormalization
 # import keras
 import tensorflow.keras.backend as K
 import tensorflow.keras.layers as KL
-import tensorflow.keras.engine as KE
+import tensorflow.keras.layers as KE
 import tensorflow.keras.models as KM
 #
 from mrcnn import utils
