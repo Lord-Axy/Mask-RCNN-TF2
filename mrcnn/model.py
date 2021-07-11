@@ -17,18 +17,19 @@ from collections import OrderedDict
 import multiprocessing
 import numpy as np
 import tensorflow as tf
-import keras
-import keras.backend as K
-import keras.layers as KL
-import keras.engine as KE
-import keras.models as KM
-
+from tensorflow.keras.layers import BatchNormalization
+# import keras
+import tensorflow.keras.backend as K
+import tensorflow.keras.layers as KL
+import tensorflow.keras.engine as KE
+import tensorflow.keras.models as KM
+#
 from mrcnn import utils
 
 # Requires TensorFlow 1.3+ and Keras 2.0.8+.
 from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
-assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
+# assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
 
 ############################################################
@@ -50,7 +51,7 @@ def log(text, array=None):
     print(text)
 
 
-class BatchNorm(KL.BatchNormalization):
+class BatchNorm(BatchNormalization):
     """Extends the Keras BatchNormalization class to allow a central place
     to make changes if needed.
 
@@ -2348,9 +2349,9 @@ class MaskRCNN():
 
         # Callbacks
         callbacks = [
-            keras.callbacks.TensorBoard(log_dir=self.log_dir,
+            tf.keras.callbacks.TensorBoard(log_dir=self.log_dir,
                                         histogram_freq=0, write_graph=True, write_images=False),
-            keras.callbacks.ModelCheckpoint(self.checkpoint_path,
+            tf.keras.callbacks.ModelCheckpoint(self.checkpoint_path,
                                             verbose=0, save_weights_only=True),
         ]
 
